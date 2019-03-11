@@ -13,6 +13,7 @@
   
 ## 已实现部分
   * 读取txt文件，获取Car,Cross,Road数据 （Txtparse.h）
+  * 实现Car,Cross，Road类（Model.h）
   
 ## 待实现部分
   * 贪心算法
