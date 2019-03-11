@@ -7,6 +7,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
+
+#include "Model.h"
 
 using namespace std;
 
@@ -17,8 +20,10 @@ using namespace std;
 * @data : id ,from, to,speed,planTime
 *
 */
-void readCar(string path)
+vector<Car> readCar(string path)
 {
+	vector<Car> car_vec;
+
 	fstream file;
 	file.open(path);
 	int id, from, to, speed, planTime;
@@ -45,9 +50,13 @@ void readCar(string path)
 		to = stoi(str3.substr(0, str3.length() - 1));
 		speed = stoi(str4.substr(0, str4.length() - 1));
 		planTime = stoi(str5.substr(0, str5.length() - 1));
-	
-		cout << "id : " << id << " from : " << from << " to : " << to << " speed : " << speed << " planTime : " << planTime << endl;
+
+		car_vec.push_back(Car(id, from, to, speed, planTime));
+
+		//cout << "id : " << id << " from : " << from << " to : " << to << " speed : " << speed << " planTime : " << planTime << endl;
 	}
+
+	return car_vec;
 }
 
 /** \brief Read Cross data
@@ -56,8 +65,10 @@ void readCar(string path)
 * @data : id, roadId, roadId, roadId, roadId
 *
 */
-void readCross(string path)
+vector<Cross> readCross(string path)
 {
+	vector<Cross> cross_vec;
+
 	fstream file;
 	file.open(path);
 	int id, roadId1, roadId2, roadId3, roadId4;
@@ -85,8 +96,12 @@ void readCross(string path)
 		roadId3 = stoi(str4.substr(0, str4.length() - 1));
 		roadId4 = stoi(str5.substr(0, str5.length() - 1));
 
-		cout << "id : " << id << " roadId1 : " << roadId1 << " roadId2 : " << roadId2 << " roadId3 : " << roadId3 << " roadId4 : " << roadId4 << endl;
+		cross_vec.push_back(Cross(id, roadId1, roadId2, roadId3, roadId4));
+
+		//cout << "id : " << id << " roadId1 : " << roadId1 << " roadId2 : " << roadId2 << " roadId3 : " << roadId3 << " roadId4 : " << roadId4 << endl;
 	}
+
+	return cross_vec;
 }
 
 /** \brief Read Road data
@@ -94,8 +109,10 @@ void readCross(string path)
 * @param path is the path of txt file
 * @data : id, length, speed, channel, from, to, isDuplex
 */
-void readRoad(string path)
+vector<Road> readRoad(string path)
 {
+	vector<Road> road_vec;
+
 	fstream file;
 	file.open(path);
 	int id, length, speed, channel, from, to, isDuplex;
@@ -114,7 +131,7 @@ void readRoad(string path)
 			}
 		}
 		// read rest string
-		string str1, str2, str3, str4, str5,str6,str7;
+		string str1, str2, str3, str4, str5, str6, str7;
 		file >> str1 >> str2 >> str3 >> str4 >> str5 >> str6 >> str7;
 
 		id = stoi(str1.substr(1, str1.length() - 2));
@@ -125,6 +142,9 @@ void readRoad(string path)
 		to = stoi(str6.substr(0, str6.length() - 1));
 		isDuplex = stoi(str7.substr(0, str7.length() - 1));
 
-		cout << "id : " << id << " length : " << length << " speed : " << speed << " channel : " << channel << " from : " << from << " to : " << to << " isDuplex : " << isDuplex << endl;
+		road_vec.push_back(Road(id, length, speed, channel, from, to, isDuplex));
+
+		//cout << "id : " << id << " length : " << length << " speed : " << speed << " channel : " << channel << " from : " << from << " to : " << to << " isDuplex : " << isDuplex << endl;
 	}
+	return road_vec;
 }

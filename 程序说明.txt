@@ -2,11 +2,11 @@
 ------------------------------------------------------------
 Txtparse.h
 ------------------------------------------------------------
-1、void readCar(string path)：
+1、vector<Cross> readCross(string path)：
      读取car数据，path为文件路径
-2、void readCross(string path)：
+2、vector<Cross> readCross(string path)：
      读取cross数据，path为文件路径
-3、void readRoad(string path)：
+3、vector<Road> readRoad(string path)：
      读取road数据，path为文件路径
 ------------------------------------------------------------
 
