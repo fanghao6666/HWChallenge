@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -99,4 +100,34 @@ public:
 
 	// left road id
 	int left_id;
+};
+
+
+//************** GRAPH *************//
+
+class Graph
+{
+public:
+	Graph() {};
+
+	~Graph() {};
+
+	// parse cross file to get row & col
+	void getRowAndCol();
+
+
+
+public:
+	// Cross list
+	map<int, Cross> cross_map;
+
+	// Road list
+	map<int, Road> road_map;
+
+	// cross matrix
+	vector<vector<Cross>> graph;
+
+	// row & col
+	int row;
+	int col;
 };

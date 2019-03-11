@@ -1,4 +1,5 @@
-﻿  main.cpp
-c:\users\ai\desktop\hwchallenge\huaweichallenge\huaweichallenge\main.cpp(20): warning C4018: “<”: 有符号/无符号不匹配
+﻿  Model.cpp
+  main.cpp
+  正在生成代码...
   HuaweiChallenge.vcxproj -> C:\Users\ai\Desktop\HWChallenge\HuaweiChallenge\Debug\HuaweiChallenge.exe
   HuaweiChallenge.vcxproj -> C:\Users\ai\Desktop\HWChallenge\HuaweiChallenge\Debug\HuaweiChallenge.pdb (Full PDB)
