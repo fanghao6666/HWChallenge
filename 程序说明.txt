@@ -2,11 +2,11 @@
 ------------------------------------------------------------
 Txtparse.h
 ------------------------------------------------------------
-1¡¢vector<Cross> readCross(string path)£º
-     ¶ÁÈ¡carÊı¾İ£¬pathÎªÎÄ¼şÂ·¾¶
-2¡¢vector<Cross> readCross(string path)£º
-     ¶ÁÈ¡crossÊı¾İ£¬pathÎªÎÄ¼şÂ·¾¶
-3¡¢vector<Road> readRoad(string path)£º
-     ¶ÁÈ¡roadÊı¾İ£¬pathÎªÎÄ¼şÂ·¾¶
+1ã€map<int,Cross> readCross(string path)ï¼š
+     è¯»å–caræ•°æ®ï¼Œpathä¸ºæ–‡ä»¶è·¯å¾„
+2ã€map<int,Cross> readCross(string path)ï¼š
+     è¯»å–crossæ•°æ®ï¼Œpathä¸ºæ–‡ä»¶è·¯å¾„
+3ã€map<int,Road> readRoad(string path)ï¼š
+     è¯»å–roadæ•°æ®ï¼Œpathä¸ºæ–‡ä»¶è·¯å¾„
 ------------------------------------------------------------
 
