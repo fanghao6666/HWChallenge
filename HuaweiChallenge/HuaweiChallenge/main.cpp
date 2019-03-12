@@ -7,6 +7,7 @@
 
 #include "Txtparser.h"
 #include "Model.h"
+#include "Visualization.h"
 
 
 using namespace std;
@@ -21,16 +22,19 @@ int main()
 	map<int, Road> road = readRoad("C:/Users/ai/Desktop/HWChallenge/SDK_C++/" + path + "/road.txt");
 
 	// graph
-	Graph graph;
-	graph.cross_map = cross;
-	graph.road_map = road;
+	Graph graph(cross,road);
 
 	graph.coordinatedCross();
 
-	for (map<int, Cross>::iterator iter = graph.cross_map.begin(); iter != graph.cross_map.end(); ++iter)
-	{
-		cout << "Cross id : " << iter->first << " Cross coordinate : X : " << iter->second.coordinate.x << " Y : " << iter->second.coordinate.y << endl;
-	}
+	//for (map<int, Cross>::iterator iter = graph.cross_map.begin(); iter != graph.cross_map.end(); ++iter)
+	//{
+	//	cout << "Cross id : " << iter->first << " Cross coordinate : X : " << iter->second.coordinate.x << " Y : " << iter->second.coordinate.y << endl;
+	//}
+
+	// visulization
+	Scene scene;
+	scene.Init(graph,car);
+	scene.Render();
 
 	return 0;
 }

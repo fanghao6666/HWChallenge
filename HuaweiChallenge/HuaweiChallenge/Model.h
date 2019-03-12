@@ -133,7 +133,7 @@ class Graph
 {
 public:
 	Graph() {};
-
+	Graph(map<int, Cross> _cross_map, map<int, Road> _road_map) :cross_map(_cross_map), road_map(_road_map) {};
 	~Graph() {};
 
 	// Coordinated each cross
