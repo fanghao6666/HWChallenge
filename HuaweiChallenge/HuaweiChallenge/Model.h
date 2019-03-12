@@ -21,6 +21,17 @@ public:
 		id(_id), from(_from), to(_to), max_speed(_max_speed), cur_speed(_max_speed), start_time(_start_time) {};
 	~Car() {};
 
+	// car position struct
+	struct Position
+	{
+		// road id
+		int roadId;
+		// channel id
+		int channel;
+		// position in channel
+		int pos_in_channel;
+	};
+
 public:
 	// car id
 	int id;
@@ -39,6 +50,9 @@ public:
 
 	// start time
 	int start_time;
+
+	// car position
+	Position position;
 
 };
 
@@ -62,7 +76,7 @@ public:
 	// max_speed
 	int max_speed;
 
-	// channel
+	// channel num
 	int channel;
 
 	// start id
@@ -85,6 +99,13 @@ public:
 		id(_id), up_id(_up_id), right_id(_right_id), down_id(_down_id), left_id(_left_id) {};
 	~Cross() {};
 
+	// cross coordinate struct
+	struct Coordinate
+	{
+		int x;
+		int y;
+	};
+
 public:
 	// cross id
 	int id;
@@ -100,6 +121,9 @@ public:
 
 	// left road id
 	int left_id;
+
+	// cross coordinate
+	Coordinate coordinate;
 };
 
 
@@ -112,9 +136,14 @@ public:
 
 	~Graph() {};
 
-	// parse cross file to get row & col
-	void getRowAndCol();
+	// Coordinated each cross
+	void coordinatedCross();
 
+	// BFS
+	void BFS(int start_cross_id);
+
+	// get id of cross which meet the conditions
+	int idOfCross(int road1, int road2, int road3, int road4);
 
 
 public:
@@ -125,9 +154,9 @@ public:
 	map<int, Road> road_map;
 
 	// cross matrix
-	vector<vector<Cross>> graph;
+	//vector<vector<Cross>> graph;
 
 	// row & col
-	int row;
-	int col;
+	//int row;
+	//int col;
 };
