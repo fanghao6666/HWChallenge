@@ -133,7 +133,11 @@ class Graph
 {
 public:
 	Graph() {};
-	Graph(map<int, Cross> _cross_map, map<int, Road> _road_map) :cross_map(_cross_map), road_map(_road_map) {};
+	Graph(map<int, Cross> _cross_map, map<int, Road> _road_map) :cross_map(_cross_map), road_map(_road_map) 
+	{ 
+		max_x = -1;
+		max_y = -1;
+	};
 	~Graph() {};
 
 	// Coordinated each cross
@@ -153,10 +157,10 @@ public:
 	// Road list
 	map<int, Road> road_map;
 
-	// cross matrix
-	//vector<vector<Cross>> graph;
+	// Coordinate map
+	map<pair<int,int>, Cross> coordinate_map;
 
-	// row & col
-	//int row;
-	//int col;
+	// max_x and max_y
+	int max_x;
+	int max_y;
 };

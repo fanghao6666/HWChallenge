@@ -24,28 +24,6 @@ void selectFont(int size,int rotate_angle)
 	DeleteObject(hOldFont);
 }
 
-/** \func Draw String
-*
-* @param str to be drew
-*
-*/
-void glDrawString(const char* str)
-{
-	static int isFirstCall = 1;
-	static GLuint lists;
-
-	if (isFirstCall)
-	{
-		isFirstCall = 0;
-		lists = glGenLists(128);
-
-		wglUseFontBitmaps(wglGetCurrentDC(), 0, 128, lists);
-	}
-
-	for (; *str != '\0'; ++str)
-		glCallList(lists + *str);
-}
-
 
 /** \func Scene Initialize
 *
@@ -59,8 +37,8 @@ void Scene::Init(Graph _graph,map<int,Car> _car_map)
 	car_map = _car_map;
 
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(1280, 960);
-	glutInitWindowPosition(300, 50);
+	glutInitWindowSize(1440, 1080);
+	glutInitWindowPosition(240, 0);
 	glutCreateWindow("Traffic Condition");
 
 	glClearColor(1.0, 1.0, 1.0, 0.0);
@@ -71,22 +49,23 @@ void Scene::Init(Graph _graph,map<int,Car> _car_map)
 	gluOrtho2D(0.0, 1280, 960, 0.0);
 }
 
-// draw road 
-void drawRoad(float x1, float y1, float x2, float y2)
+// GL draw road 
+void glDrawRoad(float x1, float y1, float x2, float y2)
 {
-	// black
-	glColor3f(0.0f, 0.0f, 0.0f);
+	// green
+	glColor3f(0.0f, 1.0f, 0.0f);
 	glRectf(x1, y1, x2, y2);
 }
 
-// draw cross
-void drawCross(float x, float y, float radius)
+// GL draw cross
+
+void glDrawCross(float x, float y, float radius)
 {
 	int sections = 200;
 	GLfloat TWOPI = 2.0f * 3.14159f;
 	
-	//Green
-	glColor3f(0.0f, 1.0f, 0.0f);
+	// purple
+	glColor3f(1.0f, 0.0f, 1.0f);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(x, y);
 	for (int i = 0; i <= sections; ++i)
@@ -94,6 +73,29 @@ void drawCross(float x, float y, float radius)
 		glVertex2f(x + radius*cos(i*TWOPI / sections), y + radius*sin(i*TWOPI / sections));
 	}
 	glEnd();
+}
+// GL draw string
+void glDrawString(float x,float y,int font_size,int rotate_angle,const char* str)
+{
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glRasterPos2f(x, y);
+	selectFont(font_size, rotate_angle);
+
+	static int isFirstCall = 1;
+	static GLuint lists;
+
+	if (isFirstCall)
+	{
+		isFirstCall = 0;
+		lists = glGenLists(128);
+
+		wglUseFontBitmaps(wglGetCurrentDC(), 0, 128, lists);
+	}
+
+	for (; *str != '\0'; ++str)
+		glCallList(lists + *str);
+
+	glutSwapBuffers();
 }
 
 /** \func Scene Display Function
@@ -106,16 +108,19 @@ void Scene::OnRender()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// draw map
-	drawRoad(10.0f, 10.0f, 50.0f, 50.0f);
+	glDrawRoad(10.0f, 10.0f, 50.0f, 50.0f);
 
-	drawCross(100.0f, 100.0f,50.0f);
+	glDrawCross(100.0f, 100.0f,30.0f);
 
-	// draw string
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glRasterPos2f(100.0f, 100.0f);
-	selectFont(15, 0);
-	glDrawString("ID");
-	glutSwapBuffers();
+	glDrawString(100.0f, 100.0f, 10, 0, "101");
+
+	for (int i = 0; i <= graph.max_x; ++i)
+	{
+		for (int j = 0; j <= graph.max_y; ++j)
+		{
+
+		}
+	}
 
 
 
