@@ -12,10 +12,10 @@ map<int, Car> Scene::car_map;
 
 /** \func Select Font
 *
-* @param 
+* @param
 *
 */
-void selectFont(int size,int rotate_angle)
+void selectFont(int size, int rotate_angle)
 {
 	HFONT hFont = CreateFont(size, 0, 0, rotate_angle, FW_MEDIUM, 0, 0, 0,
 		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
@@ -27,10 +27,10 @@ void selectFont(int size,int rotate_angle)
 
 /** \func Scene Initialize
 *
-* @param _graph to be visualized 
+* @param _graph to be visualized
 *
 */
-void Scene::Init(Graph _graph,map<int,Car> _car_map)
+void Scene::Init(Graph _graph, map<int, Car> _car_map)
 {
 	// add graph to scene
 	graph = _graph;
@@ -49,6 +49,16 @@ void Scene::Init(Graph _graph,map<int,Car> _car_map)
 	gluOrtho2D(0.0, 1280, 960, 0.0);
 }
 
+// GL Draw point
+void glDrawPoint(float x, float y)
+{
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glPointSize(2.0f);
+	glBegin(GL_POINTS);
+	glVertex2f(x, y);
+	glEnd();
+}
+
 // GL draw road 
 void glDrawRoad(float x1, float y1, float x2, float y2)
 {
@@ -58,12 +68,11 @@ void glDrawRoad(float x1, float y1, float x2, float y2)
 }
 
 // GL draw cross
-
 void glDrawCross(float x, float y, float radius)
 {
 	int sections = 200;
 	GLfloat TWOPI = 2.0f * 3.14159f;
-	
+
 	// purple
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glBegin(GL_TRIANGLE_FAN);
@@ -75,9 +84,9 @@ void glDrawCross(float x, float y, float radius)
 	glEnd();
 }
 // GL draw string
-void glDrawString(float x,float y,int font_size,int rotate_angle,const char* str)
+void glDrawString(float x, float y, int font_size, int rotate_angle, const char* str)
 {
-	glColor3f(0.0f, 0.0f, 0.0f);
+	glColor3f(1.0f, 1.0f, 0.0f);
 	glRasterPos2f(x, y);
 	selectFont(font_size, rotate_angle);
 
@@ -98,6 +107,7 @@ void glDrawString(float x,float y,int font_size,int rotate_angle,const char* str
 	glutSwapBuffers();
 }
 
+
 /** \func Scene Display Function
 *
 * @param
@@ -107,21 +117,35 @@ void Scene::OnRender()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// draw map
-	glDrawRoad(10.0f, 10.0f, 50.0f, 50.0f);
+	// each cross graph coordinate map
+	map<int, pair<float, float>> graph_coord_map;
 
-	glDrawCross(100.0f, 100.0f,30.0f);
-
-	glDrawString(100.0f, 100.0f, 10, 0, "101");
-
-	for (int i = 0; i <= graph.max_x; ++i)
+	//draw cross
+	float rate = 180.0f;
+	float cross_x_offset = 30.0f;
+	float cross_y_offset = 15.0f;
+	float string_x_offset = cross_x_offset - 6.0f;
+	float string_y_offset = cross_y_offset + 3.0f;
+	for (map<int, Cross>::iterator iter = graph.cross_map.begin(); iter != graph.cross_map.end(); ++iter)
 	{
-		for (int j = 0; j <= graph.max_y; ++j)
+		// draw cross
+		glDrawCross(rate * iter->second.rel_coordinate.x + cross_x_offset, rate * iter->second.rel_coordinate.y + cross_y_offset, 10.0f);
+		graph_coord_map[iter->first] = pair<float, float>(rate * iter->second.rel_coordinate.x + cross_x_offset, rate * iter->second.rel_coordinate.y + cross_y_offset);
+
+		// draw string
+		string cross_id_str = to_string(iter->second.id);
+		const char* cross_id = cross_id_str.c_str();
+		glDrawString(rate * iter->second.rel_coordinate.x + string_x_offset, rate * iter->second.rel_coordinate.y + string_y_offset, 15, 0, cross_id);
+	}
+
+	// draw road
+	for (int i = 0; i < 6; ++i)
+	{
+		for (int j = 0; j < 6; ++j)
 		{
 
 		}
 	}
-
 
 
 	glFlush();
@@ -152,7 +176,7 @@ void Scene::OnMouseMove(int x, int y)
 * @param
 *
 */
-void Scene::OnKey(unsigned char key,int,int)
+void Scene::OnKey(unsigned char key, int, int)
 {
 
 }

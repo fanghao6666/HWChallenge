@@ -122,8 +122,11 @@ public:
 	// left road id
 	int left_id;
 
-	// cross coordinate
-	Coordinate coordinate;
+	// relative cross coordinate
+	Coordinate rel_coordinate;
+
+	// absolute cross coordinate(这个值有问题，勿用)
+	Coordinate abs_coordinate;
 };
 
 
@@ -135,8 +138,7 @@ public:
 	Graph() {};
 	Graph(map<int, Cross> _cross_map, map<int, Road> _road_map) :cross_map(_cross_map), road_map(_road_map) 
 	{ 
-		max_x = -1;
-		max_y = -1;
+
 	};
 	~Graph() {};
 
@@ -158,9 +160,6 @@ public:
 	map<int, Road> road_map;
 
 	// Coordinate map
-	map<pair<int,int>, Cross> coordinate_map;
-
-	// max_x and max_y
-	int max_x;
-	int max_y;
+	map<pair<int, int>, Cross> rel_coordinate_map;
+	map<pair<int, int>, Cross> abs_coordinate_map;
 };
