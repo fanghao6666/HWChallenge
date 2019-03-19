@@ -1,0 +1,5 @@
+﻿  CodeCraft-2019.cpp
+c:\users\ai\desktop\hwchallenge\vs2015project\hwchallenge\hwchallenge\model.h(169): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\ai\desktop\hwchallenge\vs2015project\hwchallenge\hwchallenge\model.h(174): warning C4018: “<”: 有符号/无符号不匹配
+  HWChallenge.vcxproj -> C:\Users\ai\Desktop\HWChallenge\VS2015Project\HWChallenge\Debug\HWChallenge.exe
+  HWChallenge.vcxproj -> C:\Users\ai\Desktop\HWChallenge\VS2015Project\HWChallenge\Debug\HWChallenge.pdb (Full PDB)
