@@ -1,9 +1,10 @@
 # 2019 HWChallenge 
 
 ## 目录
-  * HWChallenge : VS2015 Project demo
-  * SDL_C++ : C++ SDK
-  * 工程编译指导书
+  * SDL_C++ : 官方C++ SDK
+  * VS2015工程，最新版
+  * 代码架构和伪代码
+  * 最新提交代码，Linux下编译
   
 ## 编程规范C++
   * 缩进采用四空格缩进
@@ -14,9 +15,10 @@
 ## 已实现部分
   * 读取txt文件，获取Car,Cross,Road数据 （Txtparse.h）
   * 实现Car,Cross，Road类（Model.h）
+  * 实现每辆车的最小路径查找
   
 ## 待实现部分
-  * 贪心算法
+  * 详见代码架构
   
 ## Last Update 
-  * 2019年3月10日
+  * 2019年3月19日
